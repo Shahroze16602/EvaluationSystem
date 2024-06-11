@@ -41,7 +41,6 @@ namespace EvaluationSystem
         { 
             txt_fname.Clear();
             txt_lname.Clear();
-            txt_mname.Clear();
             rch_address.Clear();
             cboCourse.Text = "Select";
             cboYearLevel.Text = "Select";
@@ -50,7 +49,7 @@ namespace EvaluationSystem
 
         private void btn_New_Click(object sender, EventArgs e)
         {
-            sql = "SELECT  IdNo, Firstname, Lastname, MI, HomeAddress, Gender, Course,YearLevel  FROM tblstudent s, tblcourse c WHERE s.CourseId=c.CourseId";
+            sql = "SELECT  IdNo, Firstname, Lastname, HomeAddress, Gender, Course,YearLevel  FROM tblstudent s, tblcourse c WHERE s.CourseId=c.CourseId";
             SC.Load_DTG(sql, dtg_ABorrowLists);
             PictureBox1.ImageLocation = "";
             clearme();
@@ -62,7 +61,6 @@ namespace EvaluationSystem
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-
             string gender;
             if (rdio_female.Checked)
             {
@@ -71,45 +69,57 @@ namespace EvaluationSystem
             else
             {
                 gender = "Male";
-            } 
+            }
 
-            if ( txt_sid.Text == "" 
-              || txt_fname.Text == "" || txt_lname.Text == "" 
-              || txt_mname.Text == "" || cboCourse.Text == "Select" 
-              || cboYearLevel.Text == "Select")
+            if (txt_sid.Text == "" || txt_fname.Text == "" || txt_lname.Text == ""
+              || cboCourse.Text == "Select" || cboYearLevel.Text == "Select" || string.IsNullOrEmpty(PictureBox1.ImageLocation))
             {
-
                 UF.emptymessage();
-
             }
             else
             {
-                sql = "SELECT * FROM tblstudent WHERE IdNo='" + txt_sid.Text + "'";
-                maxrow =  SC.maxrow(sql);
+                // Generate a unique filename for the image
+                string uniqueImageName = Guid.NewGuid().ToString() + Path.GetExtension(PictureBox1.ImageLocation);
+                string imagePath = Path.Combine(Application.StartupPath, "StudentPhoto", uniqueImageName);
 
-                if(maxrow > 0)
+                try
                 {
-                    sql = "update  tblstudent set  Firstname='" + txt_fname.Text
-                          + "', Lastname='" + txt_lname.Text + "', MI='" + txt_mname.Text
-                          + "', HomeAddress='" + rch_address.Text + "', Gender='" + gender
-                          + "', CourseId='" + cboCourse.SelectedValue
-                          + "', YearLevel='" + cboYearLevel.Text
-                          + "', StudentPhoto='" + Path.GetFileName(PictureBox1.ImageLocation) + "' where IdNo='" + txt_sid.Text + "'";
+                    // Copy the image to the project folder
+                    File.Copy(PictureBox1.ImageLocation, imagePath, true);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error copying image: " + ex.Message);
+                    return;
+                }
+
+                sql = "SELECT * FROM tblstudent WHERE IdNo='" + txt_sid.Text + "'";
+                maxrow = SC.maxrow(sql);
+
+                if (maxrow > 0)
+                {
+                    sql = "update tblstudent set Firstname='" + txt_fname.Text
+                          + "', Lastname='" + txt_lname.Text + "', HomeAddress='" + rch_address.Text + "', Gender='" + gender
+                          + "', CourseId=" + cboCourse.SelectedValue
+                          + ", YearLevel='" + cboYearLevel.Text
+                          + "', StudentPhoto='" + uniqueImageName + "' where IdNo='" + txt_sid.Text + "'";
+                    Console.WriteLine(sql);
                     SC.Execute_CUD(sql, "error to execute query", "Data has been updated in the database");
                 }
                 else
                 {
-                    sql = "insert into tblstudent (IdNo, Firstname, Lastname, MI, HomeAddress, "
-                        + "Gender, CourseId,YearLevel,  StudentPhoto) "
+                    sql = "insert into tblstudent (IdNo, Firstname, Lastname, HomeAddress, "
+                        + "Gender, CourseId,YearLevel, StudentPhoto) "
                         + "values ('" + txt_sid.Text + "','" + txt_fname.Text + "','" + txt_lname.Text
-                        + "','" + txt_mname.Text + "','" + rch_address.Text
-                        + "','" + gender + "','" + cboCourse.SelectedValue
-                        + "','" + cboYearLevel.Text + "','" + Path.GetFileName(PictureBox1.ImageLocation) + "')";
+                        + "','" + rch_address.Text
+                        + "','" + gender + "'," + cboCourse.SelectedValue
+                        + ",'" + cboYearLevel.Text + "','" + uniqueImageName + "')";
+                    Console.WriteLine(sql);
                     SC.Execute_CUD(sql, "error to execute query", "New Data has been saved in the database");
                 }
 
-                sql = "SELECT * FROM tblgrades WHERE IdNo=" + txt_sid.Text +
-                    " AND YearLevel='" + cboYearLevel.Text + "' AND CourseId=" + cboCourse.SelectedValue;
+                sql = "SELECT * FROM tblgrades WHERE IdNo='" + txt_sid.Text +
+                    "' AND YearLevel='" + cboYearLevel.Text + "' AND CourseId=" + cboCourse.SelectedValue;
                 maxrow = SC.maxrow(sql);
 
                 if (maxrow == 0)
@@ -118,23 +128,15 @@ namespace EvaluationSystem
                     SC.singleResult(sql);
                     foreach (DataRow r in SC.dt.Rows)
                     {
-                        sql = "INSERT INTO tblgrades (CourseId, IdNo, SubjectId, YearLevel,Sem) " +
+                        sql = "INSERT INTO tblgrades (CourseId, IdNo, SubjectId, YearLevel, Sem) " +
                             " VALUES (" + cboCourse.SelectedValue + ",'" + txt_sid.Text + "'," + r.Field<int>("SubjectId").ToString() +
                             ",'" + r.Field<string>("YearLevel") + "','" + r.Field<string>("Semester") + "')";
                         SC.Execute_Query(sql);
                     }
-
                 }
 
-
-
                 btn_New_Click(sender, e);
-
             }
-
-             
-           
-
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -193,7 +195,6 @@ namespace EvaluationSystem
                 {
                     txt_fname.Text = r.Field<string>("Firstname");
                     txt_lname.Text = r.Field<string>("Lastname");
-                    txt_mname.Text = r.Field<string>("MI");
                     rch_address.Text = r.Field<string>("HomeAddress");
                     cboCourse.SelectedValue = r.Field<int>("CourseId").ToString();
                     cboCourse.Text = r.Field<string>("Course");
@@ -223,25 +224,23 @@ namespace EvaluationSystem
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-
-            OpenFileDialog1.CheckFileExists = true; 
-            OpenFileDialog1.CheckPathExists = true; 
-            OpenFileDialog1.DefaultExt = "jpg"; 
-            OpenFileDialog1.DereferenceLinks = true; 
-            OpenFileDialog1.FileName = ""; 
-            OpenFileDialog1.Filter = "(*.jpg)|*.jpg|(*.png)|*.png|(*.jpg)|*.jpg|All files|*.*"; 
-            OpenFileDialog1.Multiselect = false; 
-            OpenFileDialog1.RestoreDirectory = true;  
+            OpenFileDialog1.CheckFileExists = true;
+            OpenFileDialog1.CheckPathExists = true;
+            OpenFileDialog1.DefaultExt = "jpg";
+            OpenFileDialog1.DereferenceLinks = true;
+            OpenFileDialog1.FileName = "";
+            OpenFileDialog1.Filter = "(*.jpg)|*.jpg|(*.png)|*.png|All files|*.*";
+            OpenFileDialog1.Multiselect = false;
+            OpenFileDialog1.RestoreDirectory = true;
             OpenFileDialog1.Title = "Select a file to open";
-            OpenFileDialog1.ValidateNames = true; 
+            OpenFileDialog1.ValidateNames = true;
 
-            if(OpenFileDialog1.ShowDialog() == DialogResult.OK)
+            if (OpenFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtPhoto.Text = OpenFileDialog1.FileName;
                 PictureBox1.ImageLocation = OpenFileDialog1.FileName;
                 PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            } 
-
+            }
         }
 
         private void btn_first_Click(object sender, EventArgs e)

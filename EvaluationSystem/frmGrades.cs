@@ -19,11 +19,12 @@ namespace EvaluationSystem
         SQLConfig SC = new SQLConfig();
         usableFunction UF = new usableFunction();
         string sql;
-        int maxrow, inc,idno=0,courseid=0;
+        int maxrow, inc,courseid=0;
+        string idno="";
 
         private void tsAdd_Click(object sender, EventArgs e)
         {
-            if (idno == 0)
+            if (idno == "")
             {
                 MessageBox.Show("Pls enter id number.", "Idno", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); 
             }
@@ -52,23 +53,24 @@ namespace EvaluationSystem
              " AND (IdNo LIKE '%" + txtSearch.Text +
              "%' OR  Firstname  LIKE '%" + txtSearch.Text +
              "%' OR  Lastname LIKE '%" + txtSearch.Text + "%' OR CONCAT(Firstname,' ', Lastname) LIKE '%" + txtSearch.Text + "%')";
-            Console.WriteLine(sql);
+            //Console.WriteLine(sql);
             maxrow = SC.maxrow(sql);
             if( maxrow > 0)
             {
                 foreach(DataRow r in SC.dt.Rows)
                 {
-                    lblName.Text = r.Field<string>("Firstname") + " " + r.Field<string>("MI") + " " + r.Field<string>("Lastname");
+                    lblName.Text = r.Field<string>("Firstname") + " " + r.Field<string>("Lastname");
                     lblAddress.Text = r.Field<string>("HomeAddress");
                     lblCourse.Text = r.Field<string>("Course");
                     lblYearLevel.Text = r.Field<string>("YearLevel");
-                    idno = int.Parse(r.Field<string>("IdNo"));
+                    idno = r.Field<string>("IdNo");
                     courseid = r.Field<int>("CourseId");
 
                     sql = "SELECT s.SubjectId ,Subject, DescriptiveTitle, LecUnit, LabUnit,PreRequisite,Grades " +
                     " FROM tblsubject s, tblgrades g  " +
                     " WHERE s.SubjectId=g.SubjectId  AND IdNo= '" + idno +
                     "' AND g.CourseId = " + courseid + " AND s.YearLevel = '" + lblYearLevel.Text + "'";
+                    Console.WriteLine(sql);
                     SC.Load_DTG(sql, dtgList);
                     tsAdd.Enabled = true;
                 }
@@ -81,7 +83,7 @@ namespace EvaluationSystem
                 lblAddress.Text = "None";
                 lblCourse.Text = "None";
                 lblYearLevel.Text = "None";
-                idno = 0;
+                idno = "";
                 courseid = 0;
                 dtgList.Columns.Clear();
                 txtSearch.Clear();

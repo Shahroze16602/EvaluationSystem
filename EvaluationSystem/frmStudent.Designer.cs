@@ -43,21 +43,19 @@
             this.txt_sid = new System.Windows.Forms.TextBox();
             this.txt_fname = new System.Windows.Forms.TextBox();
             this.rdio_female = new System.Windows.Forms.RadioButton();
-            this.txt_mname = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.txt_lname = new System.Windows.Forms.TextBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.rch_address = new System.Windows.Forms.RichTextBox();
             this.Label3 = new System.Windows.Forms.Label();
             this.rdio_male = new System.Windows.Forms.RadioButton();
-            this.Label4 = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
             this.Label9 = new System.Windows.Forms.Label();
             this.btn_edit = new System.Windows.Forms.Button();
-            this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtPhoto = new System.Windows.Forms.TextBox();
             this.btnDisable = new System.Windows.Forms.Button();
             this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.PictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_ABorrowLists)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -246,15 +244,6 @@
             this.rdio_female.Text = "Female";
             this.rdio_female.UseVisualStyleBackColor = true;
             // 
-            // txt_mname
-            // 
-            this.txt_mname.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txt_mname.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_mname.Location = new System.Drawing.Point(211, 122);
-            this.txt_mname.Name = "txt_mname";
-            this.txt_mname.Size = new System.Drawing.Size(278, 25);
-            this.txt_mname.TabIndex = 100;
-            // 
             // Label1
             // 
             this.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -280,7 +269,7 @@
             this.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Label2.AutoSize = true;
             this.Label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.Location = new System.Drawing.Point(127, 67);
+            this.Label2.Location = new System.Drawing.Point(119, 67);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(78, 17);
             this.Label2.TabIndex = 106;
@@ -290,9 +279,9 @@
             // 
             this.rch_address.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rch_address.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rch_address.Location = new System.Drawing.Point(211, 150);
+            this.rch_address.Location = new System.Drawing.Point(211, 125);
             this.rch_address.Name = "rch_address";
-            this.rch_address.Size = new System.Drawing.Size(278, 58);
+            this.rch_address.Size = new System.Drawing.Size(278, 83);
             this.rch_address.TabIndex = 102;
             this.rch_address.Text = "";
             // 
@@ -301,7 +290,7 @@
             this.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Label3.AutoSize = true;
             this.Label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(126, 97);
+            this.Label3.Location = new System.Drawing.Point(120, 97);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(77, 17);
             this.Label3.TabIndex = 104;
@@ -320,23 +309,12 @@
             this.rdio_male.Text = "Male";
             this.rdio_male.UseVisualStyleBackColor = true;
             // 
-            // Label4
-            // 
-            this.Label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.Label4.AutoSize = true;
-            this.Label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label4.Location = new System.Drawing.Point(167, 125);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(30, 17);
-            this.Label4.TabIndex = 105;
-            this.Label4.Text = "MI :";
-            // 
             // Label5
             // 
             this.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label5.Location = new System.Drawing.Point(138, 153);
+            this.Label5.Location = new System.Drawing.Point(134, 128);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(63, 17);
             this.Label5.TabIndex = 107;
@@ -365,23 +343,10 @@
             this.btn_edit.Text = "Update";
             this.btn_edit.UseVisualStyleBackColor = true;
             // 
-            // PictureBox1
-            // 
-            this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox1.Location = new System.Drawing.Point(532, 31);
-            this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(256, 169);
-            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBox1.TabIndex = 110;
-            this.PictureBox1.TabStop = false;
-            this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
-            // 
             // txtPhoto
             // 
             this.txtPhoto.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPhoto.Location = new System.Drawing.Point(532, 69);
+            this.txtPhoto.Location = new System.Drawing.Point(545, 94);
             this.txtPhoto.Name = "txtPhoto";
             this.txtPhoto.Size = new System.Drawing.Size(209, 20);
             this.txtPhoto.TabIndex = 122;
@@ -399,6 +364,19 @@
             // OpenFileDialog1
             // 
             this.OpenFileDialog1.FileName = "OpenFileDialog1";
+            // 
+            // PictureBox1
+            // 
+            this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBox1.Location = new System.Drawing.Point(518, 31);
+            this.PictureBox1.Name = "PictureBox1";
+            this.PictureBox1.Size = new System.Drawing.Size(256, 169);
+            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox1.TabIndex = 110;
+            this.PictureBox1.TabStop = false;
+            this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // frmStudent
             // 
@@ -420,14 +398,12 @@
             this.Controls.Add(this.txt_sid);
             this.Controls.Add(this.txt_fname);
             this.Controls.Add(this.rdio_female);
-            this.Controls.Add(this.txt_mname);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.txt_lname);
             this.Controls.Add(this.Label2);
             this.Controls.Add(this.rch_address);
             this.Controls.Add(this.Label3);
             this.Controls.Add(this.rdio_male);
-            this.Controls.Add(this.Label4);
             this.Controls.Add(this.Label5);
             this.Controls.Add(this.Label9);
             this.Controls.Add(this.btn_edit);
@@ -462,20 +438,18 @@
         internal System.Windows.Forms.TextBox txt_sid;
         internal System.Windows.Forms.TextBox txt_fname;
         internal System.Windows.Forms.RadioButton rdio_female;
-        internal System.Windows.Forms.TextBox txt_mname;
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.TextBox txt_lname;
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.RichTextBox rch_address;
         internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.RadioButton rdio_male;
-        internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.Label Label5;
         internal System.Windows.Forms.Label Label9;
         internal System.Windows.Forms.Button btn_edit;
-        internal System.Windows.Forms.PictureBox PictureBox1;
         internal System.Windows.Forms.TextBox txtPhoto;
         internal System.Windows.Forms.Button btnDisable;
         internal System.Windows.Forms.OpenFileDialog OpenFileDialog1;
+        internal System.Windows.Forms.PictureBox PictureBox1;
     }
 }

@@ -34,10 +34,10 @@
             this.tsGrades = new System.Windows.Forms.ToolStripButton();
             this.tsSubject = new System.Windows.Forms.ToolStripButton();
             this.tsCourses = new System.Windows.Forms.ToolStripButton();
-            this.tsUsers = new System.Windows.Forms.ToolStripButton();
             this.tsPreRequisite = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsFindstudent = new System.Windows.Forms.ToolStripButton();
+            this.tsUsers = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
@@ -47,15 +47,15 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(70, 70);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsCourses,
+            this.tsSubject,
+            this.tsPreRequisite,
             this.tsStudents,
             this.tsGrades,
-            this.tsSubject,
-            this.tsCourses,
-            this.tsPreRequisite,
             this.toolStripSeparator1,
             this.tsFindstudent,
-            this.tsUsers,
             this.toolStripSeparator2,
+            this.tsUsers,
             this.tsLogin});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -103,16 +103,6 @@
             this.tsCourses.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsCourses.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
-            // tsUsers
-            // 
-            this.tsUsers.Image = ((System.Drawing.Image)(resources.GetObject("tsUsers.Image")));
-            this.tsUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsUsers.Name = "tsUsers";
-            this.tsUsers.Size = new System.Drawing.Size(85, 89);
-            this.tsUsers.Text = "Manage Users";
-            this.tsUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsUsers.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
             // tsPreRequisite
             // 
             this.tsPreRequisite.Image = ((System.Drawing.Image)(resources.GetObject("tsPreRequisite.Image")));
@@ -137,6 +127,16 @@
             this.tsFindstudent.Text = "Find Students";
             this.tsFindstudent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsFindstudent.Click += new System.EventHandler(this.toolStripButton9_Click);
+            // 
+            // tsUsers
+            // 
+            this.tsUsers.Image = ((System.Drawing.Image)(resources.GetObject("tsUsers.Image")));
+            this.tsUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsUsers.Name = "tsUsers";
+            this.tsUsers.Size = new System.Drawing.Size(85, 89);
+            this.tsUsers.Text = "Manage Users";
+            this.tsUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsUsers.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripSeparator2
             // 

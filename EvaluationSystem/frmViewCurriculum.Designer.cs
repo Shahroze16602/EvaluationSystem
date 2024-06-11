@@ -41,10 +41,10 @@
             this.Label13 = new System.Windows.Forms.Label();
             this.Panel8 = new System.Windows.Forms.Panel();
             this.dtgFourthYearSecond = new System.Windows.Forms.DataGridView();
+            this.btnSubjectEnroll = new System.Windows.Forms.Button();
             this.Label14 = new System.Windows.Forms.Label();
             this.Label15 = new System.Windows.Forms.Label();
             this.Label16 = new System.Windows.Forms.Label();
-            this.btnSubjectEnroll = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             this.Panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel5.Location = new System.Drawing.Point(4, 34);
             this.Panel5.Name = "Panel5";
-            this.Panel5.Size = new System.Drawing.Size(495, 338);
+            this.Panel5.Size = new System.Drawing.Size(495, 333);
             this.Panel5.TabIndex = 0;
             // 
             // dtgThirdYearFirst
@@ -137,7 +137,7 @@
             this.dtgThirdYearFirst.Location = new System.Drawing.Point(0, 38);
             this.dtgThirdYearFirst.Name = "dtgThirdYearFirst";
             this.dtgThirdYearFirst.RowHeadersVisible = false;
-            this.dtgThirdYearFirst.Size = new System.Drawing.Size(495, 300);
+            this.dtgThirdYearFirst.Size = new System.Drawing.Size(495, 295);
             this.dtgThirdYearFirst.TabIndex = 0;
             this.dtgThirdYearFirst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgThirdYearFirst_KeyDown);
             // 
@@ -158,7 +158,7 @@
             this.Panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel6.Location = new System.Drawing.Point(506, 34);
             this.Panel6.Name = "Panel6";
-            this.Panel6.Size = new System.Drawing.Size(496, 338);
+            this.Panel6.Size = new System.Drawing.Size(496, 333);
             this.Panel6.TabIndex = 0;
             // 
             // dtgThirdYearSecond
@@ -175,7 +175,7 @@
             this.dtgThirdYearSecond.Location = new System.Drawing.Point(0, 38);
             this.dtgThirdYearSecond.Name = "dtgThirdYearSecond";
             this.dtgThirdYearSecond.RowHeadersVisible = false;
-            this.dtgThirdYearSecond.Size = new System.Drawing.Size(496, 300);
+            this.dtgThirdYearSecond.Size = new System.Drawing.Size(496, 295);
             this.dtgThirdYearSecond.TabIndex = 0;
             this.dtgThirdYearSecond.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgThirdYearSecond_KeyDown);
             // 
@@ -287,6 +287,18 @@
             this.dtgFourthYearSecond.TabIndex = 0;
             this.dtgFourthYearSecond.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgFourthYearSecond_KeyDown);
             // 
+            // btnSubjectEnroll
+            // 
+            this.btnSubjectEnroll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSubjectEnroll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubjectEnroll.Location = new System.Drawing.Point(54, 205);
+            this.btnSubjectEnroll.Name = "btnSubjectEnroll";
+            this.btnSubjectEnroll.Size = new System.Drawing.Size(159, 33);
+            this.btnSubjectEnroll.TabIndex = 27;
+            this.btnSubjectEnroll.Text = "Subject to be Enroll";
+            this.btnSubjectEnroll.UseVisualStyleBackColor = true;
+            this.btnSubjectEnroll.Click += new System.EventHandler(this.btnSubjectEnroll_Click);
+            // 
             // Label14
             // 
             this.Label14.Dock = System.Windows.Forms.DockStyle.Top;
@@ -317,18 +329,6 @@
             this.Label16.TabIndex = 2;
             this.Label16.Text = "Second Semester";
             // 
-            // btnSubjectEnroll
-            // 
-            this.btnSubjectEnroll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubjectEnroll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubjectEnroll.Location = new System.Drawing.Point(54, 205);
-            this.btnSubjectEnroll.Name = "btnSubjectEnroll";
-            this.btnSubjectEnroll.Size = new System.Drawing.Size(159, 33);
-            this.btnSubjectEnroll.TabIndex = 27;
-            this.btnSubjectEnroll.Text = "Subject to be Enroll";
-            this.btnSubjectEnroll.UseVisualStyleBackColor = true;
-            this.btnSubjectEnroll.Click += new System.EventHandler(this.btnSubjectEnroll_Click);
-            // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -351,6 +351,7 @@
             this.btnClose.TabIndex = 25;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblName
             // 
@@ -472,7 +473,7 @@
             this.TableLayoutPanel3.RowCount = 2;
             this.TableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.978724F));
             this.TableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.02128F));
-            this.TableLayoutPanel3.Size = new System.Drawing.Size(1006, 376);
+            this.TableLayoutPanel3.Size = new System.Drawing.Size(1006, 371);
             this.TableLayoutPanel3.TabIndex = 1;
             // 
             // Label11
@@ -511,7 +512,7 @@
             this.TableLayoutPanel2.RowCount = 2;
             this.TableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.978724F));
             this.TableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.02128F));
-            this.TableLayoutPanel2.Size = new System.Drawing.Size(1006, 376);
+            this.TableLayoutPanel2.Size = new System.Drawing.Size(1006, 371);
             this.TableLayoutPanel2.TabIndex = 1;
             // 
             // Panel3
@@ -521,7 +522,7 @@
             this.Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel3.Location = new System.Drawing.Point(4, 34);
             this.Panel3.Name = "Panel3";
-            this.Panel3.Size = new System.Drawing.Size(495, 338);
+            this.Panel3.Size = new System.Drawing.Size(495, 333);
             this.Panel3.TabIndex = 0;
             // 
             // dtgSecondYearFirst
@@ -538,7 +539,7 @@
             this.dtgSecondYearFirst.Location = new System.Drawing.Point(0, 38);
             this.dtgSecondYearFirst.Name = "dtgSecondYearFirst";
             this.dtgSecondYearFirst.RowHeadersVisible = false;
-            this.dtgSecondYearFirst.Size = new System.Drawing.Size(495, 300);
+            this.dtgSecondYearFirst.Size = new System.Drawing.Size(495, 295);
             this.dtgSecondYearFirst.TabIndex = 0;
             this.dtgSecondYearFirst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgSecondYearFirst_KeyDown);
             // 
@@ -559,7 +560,7 @@
             this.Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel4.Location = new System.Drawing.Point(506, 34);
             this.Panel4.Name = "Panel4";
-            this.Panel4.Size = new System.Drawing.Size(496, 338);
+            this.Panel4.Size = new System.Drawing.Size(496, 333);
             this.Panel4.TabIndex = 0;
             // 
             // dtgSecondYearSecond
@@ -576,7 +577,7 @@
             this.dtgSecondYearSecond.Location = new System.Drawing.Point(0, 38);
             this.dtgSecondYearSecond.Name = "dtgSecondYearSecond";
             this.dtgSecondYearSecond.RowHeadersVisible = false;
-            this.dtgSecondYearSecond.Size = new System.Drawing.Size(496, 300);
+            this.dtgSecondYearSecond.Size = new System.Drawing.Size(496, 295);
             this.dtgSecondYearSecond.TabIndex = 0;
             this.dtgSecondYearSecond.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgSecondYearSecond_KeyDown);
             // 
@@ -616,7 +617,7 @@
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage1.Size = new System.Drawing.Size(1012, 382);
+            this.TabPage1.Size = new System.Drawing.Size(1012, 377);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "First Year";
             this.TabPage1.UseVisualStyleBackColor = true;
@@ -637,7 +638,7 @@
             this.TableLayoutPanel1.RowCount = 2;
             this.TableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.978724F));
             this.TableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.02128F));
-            this.TableLayoutPanel1.Size = new System.Drawing.Size(1006, 376);
+            this.TableLayoutPanel1.Size = new System.Drawing.Size(1006, 371);
             this.TableLayoutPanel1.TabIndex = 2;
             // 
             // Panel1
@@ -647,7 +648,7 @@
             this.Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel1.Location = new System.Drawing.Point(4, 34);
             this.Panel1.Name = "Panel1";
-            this.Panel1.Size = new System.Drawing.Size(495, 338);
+            this.Panel1.Size = new System.Drawing.Size(495, 333);
             this.Panel1.TabIndex = 0;
             // 
             // dtgFirstYearFirst
@@ -664,7 +665,7 @@
             this.dtgFirstYearFirst.Location = new System.Drawing.Point(0, 38);
             this.dtgFirstYearFirst.Name = "dtgFirstYearFirst";
             this.dtgFirstYearFirst.RowHeadersVisible = false;
-            this.dtgFirstYearFirst.Size = new System.Drawing.Size(495, 300);
+            this.dtgFirstYearFirst.Size = new System.Drawing.Size(495, 295);
             this.dtgFirstYearFirst.TabIndex = 0;
             this.dtgFirstYearFirst.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFirstYearFirst_CellContentClick);
             this.dtgFirstYearFirst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgFirstYearFirst_KeyDown);
@@ -688,7 +689,7 @@
             this.Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel2.Location = new System.Drawing.Point(506, 34);
             this.Panel2.Name = "Panel2";
-            this.Panel2.Size = new System.Drawing.Size(496, 338);
+            this.Panel2.Size = new System.Drawing.Size(496, 333);
             this.Panel2.TabIndex = 0;
             // 
             // dtgFirstYearSecond
@@ -705,7 +706,7 @@
             this.dtgFirstYearSecond.Location = new System.Drawing.Point(0, 38);
             this.dtgFirstYearSecond.Name = "dtgFirstYearSecond";
             this.dtgFirstYearSecond.RowHeadersVisible = false;
-            this.dtgFirstYearSecond.Size = new System.Drawing.Size(496, 300);
+            this.dtgFirstYearSecond.Size = new System.Drawing.Size(496, 295);
             this.dtgFirstYearSecond.TabIndex = 0;
             this.dtgFirstYearSecond.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgFirstYearSecond_KeyDown);
             // 
@@ -763,7 +764,7 @@
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage2.Size = new System.Drawing.Size(1012, 382);
+            this.TabPage2.Size = new System.Drawing.Size(1012, 377);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "Second Year";
             this.TabPage2.UseVisualStyleBackColor = true;
@@ -789,7 +790,7 @@
             this.TabPage3.Location = new System.Drawing.Point(4, 22);
             this.TabPage3.Name = "TabPage3";
             this.TabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage3.Size = new System.Drawing.Size(1012, 382);
+            this.TabPage3.Size = new System.Drawing.Size(1012, 377);
             this.TabPage3.TabIndex = 2;
             this.TabPage3.Text = "Third Year";
             this.TabPage3.UseVisualStyleBackColor = true;

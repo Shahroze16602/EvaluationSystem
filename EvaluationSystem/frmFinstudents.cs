@@ -18,8 +18,8 @@ namespace EvaluationSystem
         }
         SQLConfig SC = new SQLConfig();
         usableFunction UF = new usableFunction();
-        string sql;
-        int maxrow, inc, idno, courseid;
+        string sql, idno;
+        int maxrow, inc, courseid;
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -33,8 +33,8 @@ namespace EvaluationSystem
 
         private void btnAddGrades_Click(object sender, EventArgs e)
         {
-            idno = int.Parse(dtgList.CurrentRow.Cells[0].Value.ToString());
-            courseid = int.Parse(dtgList.CurrentRow.Cells[8].Value.ToString());
+            idno = dtgList.CurrentRow.Cells[0].Value.ToString();
+            courseid = int.Parse(dtgList.CurrentRow.Cells[7].Value.ToString());
 
             Form frm = new frmPrintCurriculumn(courseid,idno);
             frm.ShowDialog();
@@ -42,9 +42,9 @@ namespace EvaluationSystem
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            sql = " SELECT IdNo, Firstname, Lastname, MI, HomeAddress, Gender,Course, YearLevel,c.CourseId FROM tblstudent s, tblcourse c WHERE s.CourseId=c.CourseId AND (Firstname LIKE '%" + TextBox1.Text + "%' Or Lastname LIKE '%" + TextBox1.Text + "%' OR IdNo Like '%" + TextBox1.Text + "%')";
+            sql = " SELECT IdNo, Firstname, Lastname, HomeAddress, Gender,Course, YearLevel,c.CourseId FROM tblstudent s, tblcourse c WHERE s.CourseId=c.CourseId AND (Firstname LIKE '%" + TextBox1.Text + "%' Or Lastname LIKE '%" + TextBox1.Text + "%' OR IdNo Like '%" + TextBox1.Text + "%')";
             SC.Load_DTG(sql, dtgList);
-            dtgList.Columns[8].Visible = false;
+            dtgList.Columns[7].Visible = false;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace EvaluationSystem
 {
     public partial class frmViewCurriculum : Form
     {
-        public frmViewCurriculum(int idno, int courseid)
+        public frmViewCurriculum(string idno, int courseid)
         {
             InitializeComponent();
 
@@ -26,7 +26,8 @@ namespace EvaluationSystem
         SQLConfig SC = new SQLConfig();
         usableFunction UF = new usableFunction();
         string sql;
-        int maxrow, inc, idno, courseid;
+        int maxrow, inc, courseid;
+        string idno = "";
 
         private void update_Grades(DataGridView dtg)
         {
@@ -45,7 +46,7 @@ namespace EvaluationSystem
 
         private void btnViewCurriculum_Click(object sender, EventArgs e)
         {
-            Form frm = new frmPrintCurriculumn( int.Parse( lblcoursId.Text),int.Parse( lblIdNo.Text));
+            Form frm = new frmPrintCurriculumn( int.Parse( lblcoursId.Text), lblIdNo.Text);
             frm.ShowDialog();
 
 
@@ -61,7 +62,7 @@ namespace EvaluationSystem
                 dtg.BeginEdit(true);
 
                  
-                sql = "SELECT * FROM tblgrades g, tblsubject s WHERE g.SubjectId=s.SubjectId  AND IdNo = " + lblIdNo.Text
+                sql = "SELECT * FROM tblgrades g, tblsubject s WHERE g.SubjectId=s.SubjectId  AND IdNo = '" + lblIdNo.Text+"'"
                     + " AND  PreRequisite = '" +  dtg.CurrentRow.Cells[1].Value + "' AND Grades < 1 AND Grades > 3";
                 maxrow = SC.maxrow(sql);
                 if (maxrow > 0)
@@ -133,6 +134,11 @@ namespace EvaluationSystem
 
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //Dim row As DataGridViewRow
@@ -169,15 +175,15 @@ namespace EvaluationSystem
 
             MessageBox.Show("Grades has been updated.");
 
-            load_data(int.Parse(lblIdNo.Text), courseid);
+            load_data(lblIdNo.Text, courseid);
         }
 
-        private void load_data(int idno ,int courseid)
+        private void load_data(string idno ,int courseid)
         {
 
 
 
-            sql = "SELECT * FROM tblstudent  s , tblcourse c WHERE s.CourseId=c.CourseId AND IdNo=" + idno;
+            sql = "SELECT * FROM tblstudent  s , tblcourse c WHERE s.CourseId=c.CourseId AND IdNo='" + idno +"'";
             maxrow = SC.maxrow(sql);
 
             if (maxrow > 0)
@@ -196,7 +202,7 @@ namespace EvaluationSystem
                 // '" AND s.SubjectId=g.SubjectId " +
                 // '" AND g.CourseId=" + courseid + " AND g.YearLevel='First' AND Semester= 'First' AND IdNo=" + idno
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-               " AND g.CourseId=" + courseid + " AND g.YearLevel='First' AND Semester= 'First' AND IdNo=" + idno;
+               " AND g.CourseId=" + courseid + " AND g.YearLevel='First' AND Semester= 'First' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgFirstYearFirst);
                 dtgFirstYearFirst.Columns[0].Visible = false;
 
@@ -204,26 +210,26 @@ namespace EvaluationSystem
 
                 // 'sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,CONCAT(  Pre1 ,  ',',  Pre2 ,  ',',  Pre3 ,  ',',  Pre4 ,  ',',  Pre5 ,  ',',  Pre6 ,  ',',  Pre7 ,  ',',  Pre8 ,  ',',  Pre9 )  as 'PreRequisite',Grades FROM tblsubject s,  tblprerequisite p, tblgrades g WHERE  s.SubjectId = p.SubjectId " +
                 // '      " AND s.SubjectId=g.SubjectId AND g.YearLevel='First' AND Semester= 'Second' " +
-                // '      " AND g.CourseId=" + courseid + " AND IdNo=" + idno
+                // '      " AND g.CourseId=" + courseid + " AND IdNo='" + idno +"'"
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-               " AND g.CourseId=" + courseid + " AND g.YearLevel='First' AND Semester= 'Second' AND IdNo=" + idno;
+               " AND g.CourseId=" + courseid + " AND g.YearLevel='First' AND Semester= 'Second' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgFirstYearSecond);
                 dtgFirstYearSecond.Columns[0].Visible = false;
 
 
                 // 'sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,CONCAT(  Pre1 ,  ',',  Pre2 ,  ',',  Pre3 ,  ',',  Pre4 ,  ',',  Pre5 ,  ',',  Pre6 ,  ',',  Pre7 ,  ',',  Pre8 ,  ',',  Pre9 )  as 'PreRequisite',Grades FROM tblsubject s,  tblprerequisite p, tblgrades g WHERE  s.SubjectId = p.SubjectId  " +
                 // '     " AND s.SubjectId=g.SubjectId AND g.YearLevel='Second' AND Semester= 'First' " +
-                // '     " AND g.CourseId=" + courseid + " AND IdNo=" + idno
+                // '     " AND g.CourseId=" + courseid + " AND IdNo='" + idno +"'"
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-               " AND g.CourseId=" + courseid + " AND g.YearLevel='Second' AND Semester= 'First' AND IdNo=" + idno;
+               " AND g.CourseId=" + courseid + " AND g.YearLevel='Second' AND Semester= 'First' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgSecondYearFirst);
                 dtgSecondYearFirst.Columns[0].Visible = false;
 
                 // 'sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,CONCAT(  Pre1 ,  ',',  Pre2 ,  ',',  Pre3 ,  ',',  Pre4 ,  ',',  Pre5 ,  ',',  Pre6 ,  ',',  Pre7 ,  ',',  Pre8 ,  ',',  Pre9 )  as 'PreRequisite',Grades FROM tblsubject s,  tblprerequisite p, tblgrades g WHERE  s.SubjectId = p.SubjectId   " +
                 // '     " AND s.SubjectId=g.SubjectId AND g.YearLevel='Second' AND Semester= 'Second' " +
-                // '     " AND g.CourseId=" + courseid + " AND IdNo=" + idno
+                // '     " AND g.CourseId=" + courseid + " AND IdNo='" + idno +"'"
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-               " AND g.CourseId=" + courseid + " AND g.YearLevel='Second' AND Semester= 'Second' AND IdNo=" + idno;
+               " AND g.CourseId=" + courseid + " AND g.YearLevel='Second' AND Semester= 'Second' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgSecondYearSecond);
                 dtgSecondYearSecond.Columns[0].Visible = false;
 
@@ -231,33 +237,33 @@ namespace EvaluationSystem
                 // 'sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,CONCAT(  Pre1 ,  ',',  Pre2 ,  ',',  Pre3 ,  ',',  Pre4 ,  ',',  Pre5 ,  ',',  Pre6 ,  ',',  Pre7 ,  ',',  Pre8 ,  ',',  Pre9 )  as 'PreRequisite',Grades FROM tblsubject s,  tblprerequisite p, tblgrades g WHERE  s.SubjectId = p.SubjectId   " +
                 // '    " AND s.SubjectId=g.SubjectId AND g.YearLevel='Third' AND Semester= 'First' " +
                 // '    " AND g.CourseId=" + courseid +
-                // '    " AND IdNo=" + idno
+                // '    " AND IdNo='" + idno +"'"
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-                 " AND g.CourseId=" + courseid + " AND g.YearLevel='Third' AND Semester= 'First' AND IdNo=" + idno;
+                 " AND g.CourseId=" + courseid + " AND g.YearLevel='Third' AND Semester= 'First' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgThirdYearFirst);
                 dtgThirdYearFirst.Columns[0].Visible = false;
 
                 // 'sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,CONCAT(  Pre1 ,  ',',  Pre2 ,  ',',  Pre3 ,  ',',  Pre4 ,  ',',  Pre5 ,  ',',  Pre6 ,  ',',  Pre7 ,  ',',  Pre8 ,  ',',  Pre9 )  as 'PreRequisite',Grades FROM tblsubject s,  tblprerequisite p, tblgrades g WHERE  s.SubjectId = p.SubjectId   " +
                 // '     " AND s.SubjectId=g.SubjectId AND g.YearLevel='Third' AND Semester= 'Second' " +
-                // '     " AND g.CourseId=" + courseid + " AND IdNo=" + idno 
+                // '     " AND g.CourseId=" + courseid + " AND IdNo='" + idno +"'" 
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-               " AND g.CourseId=" + courseid + " AND g.YearLevel='Third' AND Semester= 'Second' AND IdNo=" + idno;
+               " AND g.CourseId=" + courseid + " AND g.YearLevel='Third' AND Semester= 'Second' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgThirdYearSecond);
                 dtgThirdYearSecond.Columns[0].Visible = false;
 
                 // 'sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,CONCAT(  Pre1 ,  ',',  Pre2 ,  ',',  Pre3 ,  ',',  Pre4 ,  ',',  Pre5 ,  ',',  Pre6 ,  ',',  Pre7 ,  ',',  Pre8 ,  ',',  Pre9 )  as 'PreRequisite',Grades FROM tblsubject s,  tblprerequisite p, tblgrades g WHERE  s.SubjectId = p.SubjectId  " +
                 // '   " AND s.SubjectId=g.SubjectId AND g.YearLevel='Fourth' AND Semester= 'First' " +
-                // '   " AND g.CourseId=" + courseid + " AND IdNo=" + idno
+                // '   " AND g.CourseId=" + courseid + " AND IdNo='" + idno +"'"
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-               " AND g.CourseId=" + courseid + " AND g.YearLevel='Fourth' AND Semester= 'First' AND IdNo=" + idno;
+               " AND g.CourseId=" + courseid + " AND g.YearLevel='Fourth' AND Semester= 'First' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgFourthYearFirst);
                 dtgFourthYearFirst.Columns[0].Visible = false;
 
                 // 'sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,CONCAT(  Pre1 ,  ',',  Pre2 ,  ',',  Pre3 ,  ',',  Pre4 ,  ',',  Pre5 ,  ',',  Pre6 ,  ',',  Pre7 ,  ',',  Pre8 ,  ',',  Pre9 )  as 'PreRequisite',Grades FROM tblsubject s,  tblprerequisite p, tblgrades g WHERE  s.SubjectId = p.SubjectId  " +
                 // '     " AND s.SubjectId=g.SubjectId AND g.YearLevel='Fourth' AND Semester= 'Second' " +
-                // '     " AND g.CourseId=" + courseid + " AND IdNo=" + idno
+                // '     " AND g.CourseId=" + courseid + " AND IdNo='" + idno +"'"
                 sql = "SELECT GradesId,Subject as 'CourseNo.', DescriptiveTitle, LecUnit, LabUnit,  PreRequisite ,Grades FROM tblsubject s,tblgrades g WHERE  s.SubjectId=g.SubjectId " +
-               " AND g.CourseId=" + courseid + " AND g.YearLevel='Fourth' AND Semester= 'Second' AND IdNo=" + idno;
+               " AND g.CourseId=" + courseid + " AND g.YearLevel='Fourth' AND Semester= 'Second' AND IdNo='" + idno +"'";
                 SC.Load_DTG(sql, dtgFourthYearSecond);
                 dtgFourthYearSecond.Columns[0].Visible = false;
 
